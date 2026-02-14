@@ -28,5 +28,6 @@ Express不使用。Vite の `configureServer` フックでAPIミドルウェア�
 
 - React Router でページ遷移。リポジトリパスはクエリパラメータ `path` で持ち回す
 - Tailwind CSS でスタイリング
-- `@img-comparison-slider/react` でスライダー比較
 - リポジトリ選択は osascript ダイアログ or パス直接入力
+- 比較画面はオニオンスキン（自前実装、opacity スライダー）とサイドバイサイドの2モード
+- タイムラインで任意の2コミットを選択して比較。compare画面はヘッダ非表示のフルスクリーンレイアウト
