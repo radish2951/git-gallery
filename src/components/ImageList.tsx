@@ -1,5 +1,6 @@
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { useImages } from "../hooks/useImages";
+import { getThumbnailUrl } from "../lib/api";
 
 export function ImageList() {
   const [searchParams] = useSearchParams();
@@ -28,8 +29,14 @@ export function ImageList() {
                   `/history?path=${encodeURIComponent(repoPath)}&file=${encodeURIComponent(file)}`,
                 )
               }
-              className="block w-full text-left px-4 py-2 bg-white rounded border border-gray-200 hover:bg-gray-100 transition-colors text-sm font-mono"
+              className="flex items-center gap-3 w-full text-left px-4 py-2 bg-white rounded border border-gray-200 hover:bg-gray-100 transition-colors text-sm font-mono"
             >
+              <img
+                src={getThumbnailUrl(repoPath, "HEAD", file)}
+                alt={file}
+                className="w-10 h-10 object-contain bg-gray-100 rounded shrink-0"
+                loading="lazy"
+              />
               {file}
             </button>
           </li>

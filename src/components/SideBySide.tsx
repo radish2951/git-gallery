@@ -15,7 +15,7 @@ export function SideBySide({ repoPath, file, commitA, commitB }: Props) {
         <img
           src={getImageUrl(repoPath, commitA, file)}
           alt={commitA.substring(0, 7)}
-          className="w-full"
+          className="w-full max-h-[calc(100vh-8rem)] object-contain"
         />
       </div>
       <div>
@@ -23,7 +23,7 @@ export function SideBySide({ repoPath, file, commitA, commitB }: Props) {
         <img
           src={getImageUrl(repoPath, commitB, file)}
           alt={commitB.substring(0, 7)}
-          className="w-full"
+          className="w-full max-h-[calc(100vh-8rem)] object-contain"
         />
       </div>
     </div>

@@ -19,6 +19,7 @@ export function validateRepoPath(repoPath: string): Promise<void> {
 }
 
 export function validateCommitHash(hash: string): void {
+  if (hash === "HEAD") return;
   if (!/^[0-9a-f]{4,40}$/i.test(hash)) {
     throw new Error(`Invalid commit hash: ${hash}`);
   }
