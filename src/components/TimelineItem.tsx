@@ -5,30 +5,33 @@ interface Props {
   repoPath: string;
   file: string;
   commit: CommitInfo;
-  previousCommit: CommitInfo | null;
-  onSelect: (commitHash: string, previousHash: string) => void;
+  selected: boolean;
+  selectionLabel: "A" | "B" | null;
+  onToggle: (hash: string) => void;
 }
 
 export function TimelineItem({
   repoPath,
   file,
   commit,
-  previousCommit,
-  onSelect,
+  selected,
+  selectionLabel,
+  onToggle,
 }: Props) {
-  const disabled = !previousCommit;
-
   return (
     <div
-      className={`flex items-center gap-4 p-3 rounded border transition-colors ${
-        disabled
-          ? "border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed"
-          : "border-gray-200 bg-white hover:bg-gray-50 cursor-pointer"
+      className={`flex items-center gap-4 p-3 rounded border transition-colors cursor-pointer ${
+        selected
+          ? "border-blue-500 bg-blue-50"
+          : "border-gray-200 bg-white hover:bg-gray-50"
       }`}
-      onClick={() => {
-        if (!disabled) onSelect(commit.hash, previousCommit.hash);
-      }}
+      onClick={() => onToggle(commit.hash)}
     >
+      {selectionLabel && (
+        <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center shrink-0">
+          {selectionLabel}
+        </span>
+      )}
       <img
         src={getThumbnailUrl(repoPath, commit.hash, file)}
         alt={commit.subject}

@@ -12,21 +12,21 @@ export function OnionSkin({ repoPath, file, commitA, commitB }: Props) {
   const [opacity, setOpacity] = useState(50);
 
   return (
-    <div>
-      <div className="relative">
+    <div className="h-full flex flex-col">
+      <div className="flex-1 min-h-0 relative flex items-center justify-center">
         <img
           src={getImageUrl(repoPath, commitA, file)}
           alt={commitA.substring(0, 7)}
-          className="max-h-[calc(100vh-10rem)] w-full object-contain"
+          className="absolute max-w-full max-h-full object-contain"
         />
         <img
           src={getImageUrl(repoPath, commitB, file)}
           alt={commitB.substring(0, 7)}
-          className="absolute inset-0 max-h-[calc(100vh-10rem)] w-full object-contain"
+          className="absolute max-w-full max-h-full object-contain"
           style={{ opacity: opacity / 100 }}
         />
       </div>
-      <div className="flex items-center gap-3 mt-3">
+      <div className="flex items-center gap-3 py-2 px-4 justify-center shrink-0">
         <span className="text-xs text-gray-500 shrink-0">
           {commitA.substring(0, 7)}
         </span>
@@ -36,7 +36,7 @@ export function OnionSkin({ repoPath, file, commitA, commitB }: Props) {
           max={100}
           value={opacity}
           onChange={(e) => setOpacity(Number(e.target.value))}
-          className="flex-1"
+          className="max-w-sm w-full"
         />
         <span className="text-xs text-gray-500 shrink-0">
           {commitB.substring(0, 7)}
